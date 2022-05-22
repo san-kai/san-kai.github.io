@@ -35,6 +35,14 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+	<!-- =============== Chartjs =============== -->
+	<!--<script type="text/javascript" src="Chart.js"></script>
+	<script type="text/javascript" src="xlsx.full.min.js"></script>
+	<script type="text/javascript" src="chartjs-plugin-datasource.js"></script>-->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/xlsx@0.14.3/dist/xlsx.full.min.js"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datasource@0.1.0"></script>
+	
 	
 </head>
 
@@ -348,6 +356,185 @@
 			</div>
 		</div><!-- =============== container end =============== -->
 	</section>
+
+	<section id="contil">
+		<div class="container">
+			<div>
+				<canvas id="myChart" width="600" height="300"></canvas>
+			</div>
+
+			<div>
+				<canvas id="myChart2" width="600" height="300"></canvas>
+			</div>
+
+			<div>
+				<canvas id="myChart3" width="600" height="300"></canvas>
+			</div>
+
+			<div>
+				<canvas id="myChart4" width="600" height="300"></canvas>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		var ctx = document.getElementById("myChart").getContext("2d");
+		var chart = new Chart (ctx, {
+		    type: 'bar',
+		    data: {
+		        datasets: [{
+		        label: "Jumlah Peserta Yang Mengikuti Tender Tiap Tahun",
+		        backgroundColor: ["#FF00C9","#007CFF","#0BCD01","#F97900","#FAE108","#9408FA","#562C04"]
+		    }
+			]},
+		    plugins: [ChartDataSource],
+		    options: {
+		    title: {
+				display: true,
+				fontSize: 30
+	        },
+	        scales: {
+                    xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true
+                            }
+                        }],
+                    yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                steps: 10,
+                                stepValue: 5,
+                                max: 1500
+                            }
+                        }]
+                },
+			plugins: {
+				datasource: {
+					url: 'Visualisasi.xlsx',
+					rowMapping: 'index',
+					indexLabels: "'JUMLAH PESERTA TIAP TAHUN'!A2:A6",
+					data: "'JUMLAH PESERTA TIAP TAHUN'!B2:B6"
+					}
+				}
+			}
+		});
+	</script>
+
+	<script>
+		var ctx = document.getElementById("myChart2").getContext("2d");
+		var chart = new Chart (ctx, {
+		type: 'horizontalBar',
+		data: {
+			datasets: [{
+			label: "Rata-Rata Harga Penawaran Tiap Tahun (Dalam Rupiah)",
+			backgroundColor: ["#FF00C9","#007CFF","#0BCD01","#F97900","#FAE108","#9408FA","#562C04"]
+		}
+		]},
+		plugins: [ChartDataSource],
+		options: {
+		title: {
+			display: true,
+			fontSize: 30,
+		},
+		scales: {
+			xAxes: [{
+					display: true,
+					ticks: {
+						beginAtZero: true,
+						steps: 10,
+						stepValue: 5,
+						max: 3000000000
+					},				
+				}],			
+		},
+		plugins: {
+			datasource: {
+				url: 'Visualisasi.xlsx',
+					rowMapping: 'index',
+					indexLabels: "'RATA RATA HARGA PENAWARAN'!A2:A6",
+					data: "'RATA RATA HARGA PENAWARAN'!B2:B6"
+				}
+			}
+		}
+	});
+	</script>
+
+	<script>
+		var ctx = document.getElementById("myChart3").getContext("2d");
+		var chart = new Chart (ctx, {
+			type: 'bar',
+			data: {
+				datasets: [{
+				label: "Jumlah Peserta Yang Mengikuti Tender Tiap Tahun",
+				backgroundColor: ["#FF00C9","#007CFF","#0BCD01","#F97900","#FAE108","#9408FA","#562C04"]
+			}
+			]},
+			plugins: [ChartDataSource],
+			options: {
+			title: {
+				display: true,
+				fontSize: 30
+			},
+			scales: {
+					xAxes: [{
+							display: true,
+							scaleLabel: {
+								display: true
+							}
+						}],
+					yAxes: [{
+							display: true,
+							ticks: {
+								beginAtZero: true,
+								steps: 10,
+								stepValue: 5,
+								max: 1200
+							}
+						}]
+				},
+			plugins: {
+				datasource: {
+					url: 'Visualisasi.xlsx',
+					rowMapping: 'index',
+					datasetLabels: "'JUMLAH TENDER SELESAI'!B1:C1",
+					indexLabels: "'JUMLAH TENDER SELESAI'!A2:A6",
+					data: "'JUMLAH TENDER SELESAI'!B2:C6"
+					}
+				}
+			}
+		});
+	</script>
+
+	<script>
+		var ctx = document.getElementById("myChart4").getContext("2d");
+		var chart = new Chart (ctx, {
+		type: 'doughnut',
+		data: {
+			datasets: [{
+			label: "Perusahaan Yang Sering Memenangkan Tender",
+			backgroundColor: ["#FF00C9","#007CFF","#0BCD01","#F97900","#FAE108","#9408FA","#562C04"]
+		}
+		]},
+		plugins: [ChartDataSource],
+		options: {
+		title: {
+			display: true,
+			fontSize: 30,
+		},
+		plugins: {
+			datasource: {
+				url: 'Visualisasi.xlsx',
+					rowMapping: 'index',
+					indexLabels: "'PERUSAHAAN YANG SERING MENANG'!A2:A5",
+					data: "'PERUSAHAAN YANG SERING MENANG'!B2:B5"
+				}
+			}
+		}
+	});
+	</script>
+
     <!-- Footer -->
     <footer id="footer">
 	<!-- =============== container =============== -->
@@ -379,7 +566,8 @@
 				</div>
 			</div>
     </div><!-- =============== container end =============== -->
-	</footer>    
+	</footer>
+
 	<!-- =============== jQuery =============== -->
     <script src="assets/js/jquery.js"></script>
 	 <script src="assets/js/isotope-docs.min.js"></script>
