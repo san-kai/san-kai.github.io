@@ -39,6 +39,9 @@ a {
 	padding-bottom: 70px;
 	position: relative;
 }
+
+
+
 .header {
    background: rgba(0, 0, 0, 0) url("../img/header.jpg") repeat fixed center 0 / cover  ;
     color: #fff;
@@ -911,6 +914,7 @@ blockquote {
 	padding:100px 0;
     transition: all 0.35s ease 0s;
 }
+
 #contact input[type="text"]{
     background-color: #fff;
     background-image: none;
@@ -1344,8 +1348,21 @@ width:100%;
     width: 87%;
 }
 
+
 }
 
+#visualisasi
+{
+    background-color: #FFF;
+    color: #000;
+    overflow: hidden;
+	padding:100px 0;
+    transition: all 0.35s ease 0s;
+}
 
+.titlechart {
+    text-align: center;
+	position: relative;
+}
 
 
